@@ -10,7 +10,7 @@ const Sidebar = () => {
   ]
 
   return (
-    <aside className="w-14 h-screen bg-gradient-to-b from-primary-900 via-primary-800 to-primary-700 flex flex-col items-center py-6 fixed left-0">
+    <aside className="w-14 h-screen bg-black flex flex-col items-center py-6 fixed left-0">
       <div className="mb-12">
         <Link href="/">
           <div className="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center transform transition-transform hover:scale-105">

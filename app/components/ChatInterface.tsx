@@ -9,7 +9,7 @@ interface Message {
   timestamp: Date
 }
 
-const ChatInterface = () => {
+export const ChatInterface = () => {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
 
@@ -41,34 +41,6 @@ const ChatInterface = () => {
 
   return (
     <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl bg-primary-900 rounded-lg shadow-xl">
-      <div className="h-[500px] overflow-y-auto px-4 py-6 space-y-6">
-        {messages.length === 0 && (
-          <div className="text-center text-primary-500 mt-20">
-            <p className="text-lg">Welcome to PublicBuilder</p>
-            <p className="text-sm mt-2">Tell me what you want to post about and I'll help you create content based on your GitHub activity.</p>
-          </div>
-        )}
-        {messages.map((message) => (
-          <div
-            key={message.id}
-            className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-          >
-            <div
-              className={`max-w-[60%] rounded-2xl px-4 py-3 ${
-                message.sender === 'user'
-                  ? 'bg-primary-600 text-white'
-                  : 'bg-primary-800 text-primary-500'
-              }`}
-            >
-              <p className="text-sm leading-relaxed">{message.content}</p>
-              <span className="text-[10px] opacity-70 mt-1 block">
-                {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-
       <div className="border-t border-primary-800 bg-primary-900 p-4 rounded-b-lg">
         <form onSubmit={handleSubmit} className="flex items-center gap-2">
           <input

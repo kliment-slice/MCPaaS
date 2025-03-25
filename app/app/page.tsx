@@ -31,8 +31,15 @@ const BackgroundQuotes = () => {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       {quotes.map((quote, index) => {
-        const baseX = (index % 4) * 25 - 37.5 // Distribute across screen width
-        const baseY = Math.floor(index / 4) * 20 - 30 // Distribute across screen height
+        // Create a grid-like distribution with 5 columns and 4 rows
+        const columns = 5
+        const rows = 4
+        const column = index % columns
+        const row = Math.floor(index / columns)
+        
+        // Calculate positions to spread across the screen with equal spacing
+        const baseX = (column / (columns - 1)) * 100 - 50 // Spread from -50% to 50%
+        const baseY = (row / (rows - 1)) * 100 - 50 // Spread from -50% to 50%
         
         return (
           <motion.div
@@ -180,6 +187,18 @@ export default function Home() {
             </div>
           </label>
         </div>
+        
+        {/* YOLO Mode Notification */}
+        {yoloMode && (
+          <div className="mt-3 text-center">
+            <div className="inline-block glass-morphism px-4 py-2 rounded-full bg-purple-500/10">
+              <p className="text-purple-300 text-xs flex items-center gap-2">
+                <span>⚠️</span>
+                YOLO mode active - Messages will auto-send
+              </p>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Main Chat Container */}
@@ -213,32 +232,23 @@ export default function Home() {
 
         {/* Action Buttons */}
         <div className="mt-4 flex justify-center">
-          <button
-            onClick={refreshLatestCommits}
-            disabled={isLoadingCommits}
-            className="floating-button w-full py-4 px-6 bg-white text-black rounded-lg hover:bg-gray-100 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-          >
-            {isLoadingCommits ? (
-              <RefreshCw className="h-5 w-5 animate-spin" />
-            ) : (
-              <>
-                <Send className="h-5 w-5" />
-                <span>Publish Tweet</span>
-              </>
-            )}
-          </button>
+          {!yoloMode && (
+            <button
+              onClick={refreshLatestCommits}
+              disabled={isLoadingCommits}
+              className="floating-button w-full py-4 px-6 bg-white text-black rounded-lg hover:bg-gray-100 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              {isLoadingCommits ? (
+                <RefreshCw className="h-5 w-5 animate-spin" />
+              ) : (
+                <>
+                  <Send className="h-5 w-5" />
+                  <span>Publish Tweet</span>
+                </>
+              )}
+            </button>
+          )}
         </div>
-
-        {yoloMode && (
-          <div className="mt-3 text-center">
-            <div className="inline-block glass-morphism px-4 py-2 rounded-full bg-purple-500/10">
-              <p className="text-purple-300 text-xs flex items-center gap-2">
-                <span>⚠️</span>
-                YOLO mode active - Messages will auto-send
-              </p>
-            </div>
-          </div>
-        )}
 
         {/* Status Messages */}
         {tweetSuccess && (

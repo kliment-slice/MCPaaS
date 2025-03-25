@@ -137,7 +137,7 @@ async def mcphack_summarize_scrape():
         
         # Generate tweet based on scraped content
         tweet_prompt = f"""
-        Create a concise tweet summarizing these GitHub commits:
+        Create a concise tweet summarizing these GitHub commits, but focus on the MOST RECENT commit:
         
         {scraped_content}
         

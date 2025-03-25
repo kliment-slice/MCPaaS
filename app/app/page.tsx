@@ -189,6 +189,14 @@ export default function Home() {
           <p className="text-[clamp(0.75rem,1.5vw,1rem)] text-white/90 max-w-[90%] mx-auto">
             Let's publish what you've been working on.
           </p>
+          <button
+            onClick={refreshLatestCommits}
+            disabled={isLoadingCommits}
+            className="mt-4 px-4 py-2 bg-white/10 text-white/90 rounded-lg hover:bg-white/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 mx-auto"
+          >
+            <RefreshCw className={`h-4 w-4 ${isLoadingCommits ? 'animate-spin' : ''}`} />
+            <span>Refresh Latest Commits</span>
+          </button>
         </div>
 
         {/* Message Area */}

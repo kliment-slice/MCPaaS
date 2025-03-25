@@ -236,11 +236,11 @@ export default function Home() {
           <div className="mt-4 flex justify-center">
             {!yoloMode && (
               <button
-                onClick={refreshLatestCommits}
-                disabled={isLoadingCommits}
+                onClick={() => executeTweet()}
+                disabled={isExecutingTweet || !commits.trim()}
                 className="floating-button w-full py-4 px-6 bg-white text-black rounded-lg hover:bg-gray-100 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
-                {isLoadingCommits ? (
+                {isExecutingTweet ? (
                   <RefreshCw className="h-5 w-5 animate-spin" />
                 ) : (
                   <>

@@ -148,7 +148,7 @@ async def mcphack_summarize_scrape():
             model="llama-3.3-70b-versatile",
             messages=[{"role": "user", "content": tweet_prompt}]
         )
-        
+        # Get the tweet content
         tweet_content = tweet_response.choices[0].message.content.strip()
         
         # Add Twitter handles at the end of the tweet

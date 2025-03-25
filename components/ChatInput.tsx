@@ -1,50 +1,36 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, FormEvent, ChangeEvent } from 'react';
 
-export const ChatInput = () => {
-  const [message, setMessage] = useState('');
+export const ChatInput: React.FC = () => {
+  const [message, setMessage] = useState<string>('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle message submission here
     setMessage('');
   };
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setMessage(e.target.value);
+  };
+
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-[#1a1a1a] p-4">
-      <form onSubmit={handleSubmit} className="flex items-center gap-2 max-w-[1200px] mx-auto">
-        <input
-          type="text"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Ask anything, use @ to tag files and collections"
-          className="flex-1 bg-transparent text-white placeholder-gray-400 outline-none"
-        />
-        <div className="flex items-center gap-2">
+    <div className="fixed bottom-0 left-0 right-0 border-t border-gray-200 bg-white py-6">
+      <form onSubmit={handleSubmit} className="max-w-3xl mx-auto px-6">
+        <div className="flex items-center gap-4">
+          <input
+            type="text"
+            value={message}
+            onChange={handleChange}
+            placeholder="Tell me what you want to post about..."
+            className="flex-1 px-4 py-3 text-gray-900 placeholder-gray-500 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent transition-all"
+          />
           <button
-            type="button"
-            className="flex items-center gap-1 px-3 py-1 text-sm text-gray-300 hover:bg-gray-700 rounded-full"
+            type="submit"
+            className="px-6 py-3 text-sm font-medium text-gray-900 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
-            </svg>
-            Add
-          </button>
-          <button
-            type="button"
-            className="flex items-center gap-1 px-3 py-1 text-sm bg-[#85e249] text-black rounded-full hover:bg-[#76c940]"
-          >
-            Web
-          </button>
-          <button
-            type="button"
-            className="flex items-center gap-1 px-3 py-1 text-sm text-gray-300 hover:bg-gray-700 rounded-full"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clipRule="evenodd" />
-            </svg>
-            Filters
+            Create
           </button>
         </div>
       </form>

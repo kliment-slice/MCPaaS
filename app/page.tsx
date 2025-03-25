@@ -1,12 +1,13 @@
 import { ChatInput } from '../components/ChatInput'
+import WelcomeMessage from '../components/WelcomeMessage'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="flex-1">
-        {/* Chat messages will go here */}
+    <main className="min-h-screen bg-white">
+      <WelcomeMessage />
+      <div className="container mx-auto px-4">
+        <ChatInput />
       </div>
-      <ChatInput />
     </main>
   )
 } 

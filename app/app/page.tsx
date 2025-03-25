@@ -2,6 +2,87 @@
 
 import { useState } from 'react'
 import { RefreshCw, CheckCircle, Rocket, Send } from 'lucide-react'
+import { motion } from 'framer-motion'
+
+const BackgroundQuotes = () => {
+  const quotes = [
+    "Share Progress Often",
+    "Build and Share Publicly",
+    "Be Open and Transparent",
+    "Document Your Journey",
+    "Share Your Story",
+    "Build in the Open",
+    "Transparency Matters",
+    "Share Your Process",
+    "Openly Build and Share",
+    "Show Your Work",
+    "Be Transparent Always",
+    "Share Your Progress",
+    "Publicly Document Growth",
+    "Build with Transparency",
+    "Share Your Experience",
+    "Openly Share Progress",
+    "Document Everything",
+    "Share Your Journey",
+    "Build Openly Always",
+    "Transparency Builds Trust"
+  ]
+
+  return (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      {quotes.map((quote, index) => {
+        const baseX = (index % 4) * 25 - 37.5 // Distribute across screen width
+        const baseY = Math.floor(index / 4) * 20 - 30 // Distribute across screen height
+        
+        return (
+          <motion.div
+            key={index}
+            className="absolute text-white/[0.12] whitespace-nowrap font-light tracking-wide"
+            style={{
+              left: `${50 + baseX}%`,
+              top: `${50 + baseY}%`,
+              fontSize: `${0.9 + (index % 3) * 0.1}rem`,
+            }}
+            animate={{
+              x: [
+                Math.random() * 20 - 10,
+                Math.random() * 20 - 10,
+                Math.random() * 20 - 10
+              ],
+              y: [
+                Math.random() * 20 - 10,
+                Math.random() * 20 - 10,
+                Math.random() * 20 - 10
+              ],
+              opacity: [0.12, 0.15, 0.12]
+            }}
+            transition={{
+              duration: 8 + Math.random() * 4,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut",
+              times: [0, 0.5, 1],
+              delay: index * 0.2
+            }}
+          >
+            {quote}
+          </motion.div>
+        )
+      })}
+    </div>
+  )
+}
+
+// Add this at the top level of your CSS or in your Tailwind config
+const styles = {
+  '.animate-spin-slow': {
+    animation: 'spin 60s linear infinite',
+  },
+  '@keyframes spin': {
+    from: { transform: 'rotate(0deg)' },
+    to: { transform: 'rotate(360deg)' },
+  },
+}
 
 export default function Home() {
   const [commits, setCommits] = useState('')
@@ -69,10 +150,11 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-4 relative">
+      <BackgroundQuotes />
       {/* Header */}
       <div className="w-full max-w-md mb-8 mt-4">
         <div className="flex items-center justify-between gap-4 text-white/90">
-          <h1 className="text-xl font-normal">Twitter MCPaaS</h1>
+          <h1 className="text-xl font-normal">Tweet your Dev Updates</h1>
           
           {/* YOLO Mode Toggle */}
           <label className="glass-morphism px-3 py-2 rounded-full cursor-pointer flex items-center gap-2 hover:bg-white/10 transition-colors">
@@ -161,7 +243,7 @@ export default function Home() {
         )}
 
         {/* Quote */}
-        <div className="mt-8 glass-morphism p-6 rounded-2xl">
+        <div className="mt-4 glass-morphism p-6 rounded-2xl">
           <blockquote className="relative">
             <div className="absolute top-0 left-0 text-4xl text-white/20 -translate-x-4 -translate-y-4">"</div>
             <p className="italic text-white/70 text-center text-sm leading-relaxed">
@@ -169,6 +251,13 @@ export default function Home() {
             </p>
             <div className="absolute bottom-0 right-0 text-4xl text-white/20 translate-x-2 translate-y-2">"</div>
           </blockquote>
+        </div>
+
+        {/* Powered by section */}
+        <div className="mt-4 text-center">
+          <p className="text-white/50 text-xs">
+            Powered by Groq / composion / toolhouse
+          </p>
         </div>
       </div>
     </main>

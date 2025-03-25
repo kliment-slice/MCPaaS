@@ -264,7 +264,7 @@ export default function Home() {
         {/* Powered by section */}
         <div className="mt-4 text-center">
           <p className="text-white/50 text-xs">
-            Powered by Groq / composion / toolhouse
+            Powered by <a href="https://groq.com/" className="text-white/50 hover:text-white/50">Groq</a> / <a href="https://composio.dev/" className="text-white/50 hover:text-white/50">composio</a> / <a href="https://toolhouse.ai" className="text-white/50 hover:text-white/50">toolhouse</a>
           </p>
         </div>
       </div>

@@ -203,7 +203,7 @@ export default function Home() {
 
       {/* Main Chat Container */}
       <div className="chat-container w-full max-w-md flex-1 flex flex-col p-6">
-        {/* Welcome Message */}
+        {/* Welcome Message and Refresh Button */}
         <div className="text-center mb-8">
           <p className="text-[clamp(0.75rem,1.5vw,1rem)] text-white/90 max-w-[90%] mx-auto">
             Let's publish what you've been working on.
@@ -218,36 +218,39 @@ export default function Home() {
           </button>
         </div>
 
-        {/* Message Area */}
-        <div className="flex-1 space-y-4">
-          <textarea
-            value={commits}
-            onChange={(e) => setCommits(e.target.value)}
-            className="w-full p-4 bg-white/5 text-white/90 rounded-2xl border border-white/10 resize-none focus:outline-none focus:ring-2 focus:ring-white/20"
-            rows={4}
-            placeholder="Latest commit summary will appear here..."
-            disabled={isLoadingCommits || yoloMode}
-          />
-        </div>
+        {/* Tweet Composition Area */}
+        <div className="mt-auto">
+          {/* Message Area */}
+          <div className="space-y-4">
+            <textarea
+              value={commits}
+              onChange={(e) => setCommits(e.target.value)}
+              className="w-full p-4 bg-white/5 text-white/90 rounded-2xl border border-white/10 resize-none focus:outline-none focus:ring-2 focus:ring-white/20"
+              rows={4}
+              placeholder="Latest commit summary will appear here..."
+              disabled={isLoadingCommits || yoloMode}
+            />
+          </div>
 
-        {/* Action Buttons */}
-        <div className="mt-4 flex justify-center">
-          {!yoloMode && (
-            <button
-              onClick={refreshLatestCommits}
-              disabled={isLoadingCommits}
-              className="floating-button w-full py-4 px-6 bg-white text-black rounded-lg hover:bg-gray-100 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-            >
-              {isLoadingCommits ? (
-                <RefreshCw className="h-5 w-5 animate-spin" />
-              ) : (
-                <>
-                  <Send className="h-5 w-5" />
-                  <span>Publish Tweet</span>
-                </>
-              )}
-            </button>
-          )}
+          {/* Action Buttons */}
+          <div className="mt-4 flex justify-center">
+            {!yoloMode && (
+              <button
+                onClick={refreshLatestCommits}
+                disabled={isLoadingCommits}
+                className="floating-button w-full py-4 px-6 bg-white text-black rounded-lg hover:bg-gray-100 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                {isLoadingCommits ? (
+                  <RefreshCw className="h-5 w-5 animate-spin" />
+                ) : (
+                  <>
+                    <Send className="h-5 w-5" />
+                    <span>Publish Tweet</span>
+                  </>
+                )}
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Status Messages */}

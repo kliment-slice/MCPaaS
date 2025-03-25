@@ -251,7 +251,7 @@ export default function Home() {
         )}
 
         {/* Quote */}
-        <div className="mt-4 glass-morphism p-6 rounded-2xl">
+        <div className="mt-4">
           <blockquote className="relative">
             <div className="absolute top-0 left-0 text-4xl text-white/20 -translate-x-4 -translate-y-4">"</div>
             <p className="italic text-white/70 text-center text-sm leading-relaxed">

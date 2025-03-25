@@ -1,12 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { RefreshCw, CheckCircle, Rocket, AtSign } from 'lucide-react'
+import { useState } from 'react'
+import { RefreshCw, CheckCircle, Rocket } from 'lucide-react'
 
 export default function Home() {
   const [commits, setCommits] = useState('')
-  const [authors, setAuthors] = useState([])
-  const [twitterHandles, setTwitterHandles] = useState([])
   const [isLoadingCommits, setIsLoadingCommits] = useState(false)
   const [isExecutingTweet, setIsExecutingTweet] = useState(false)
   const [tweetSuccess, setTweetSuccess] = useState(false)
@@ -15,8 +13,6 @@ export default function Home() {
   const refreshLatestCommits = async () => {
     setIsLoadingCommits(true)
     setCommits('')
-    setAuthors([])
-    setTwitterHandles([])
     setTweetSuccess(false)
     
     try {
@@ -28,8 +24,6 @@ export default function Home() {
       } else {
         const tweetContent = result.tweet || 'No tweet summary available'
         setCommits(tweetContent)
-        setAuthors(result.authors || [])
-        setTwitterHandles(result.twitter_handles || [])
         
         // Auto-execute tweet if YOLO mode is enabled
         if (yoloMode && tweetContent && tweetContent !== 'No tweet summary available') {
@@ -115,7 +109,7 @@ export default function Home() {
             
             {yoloMode && (
               <div className="p-2 bg-red-900/30 border border-red-500/30 rounded-lg text-center w-full max-w-xs">
-                <p className="text-red-300 text-2xl">
+                <p className="text-red-300 text-xs">
                   ⚠️ YOLO mode is active! Tweets will be auto-posted.
                 </p>
               </div>

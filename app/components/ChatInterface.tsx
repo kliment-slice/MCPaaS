@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { FiSend } from 'react-icons/fi'
+import { FaXTwitter } from 'react-icons/fa6'
+import { FaLinkedinIn } from 'react-icons/fa'
 
 interface Message {
   id: string
@@ -39,10 +40,10 @@ const ChatInterface = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50">
-      <div className="flex-1 overflow-y-auto px-4 py-6 space-y-6">
+    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl bg-primary-900 rounded-lg shadow-xl">
+      <div className="h-[500px] overflow-y-auto px-4 py-6 space-y-6">
         {messages.length === 0 && (
-          <div className="text-center text-gray-500 mt-20">
+          <div className="text-center text-primary-500 mt-20">
             <p className="text-lg">Welcome to PublicBuilder</p>
             <p className="text-sm mt-2">Tell me what you want to post about and I'll help you create content based on your GitHub activity.</p>
           </div>
@@ -55,8 +56,8 @@ const ChatInterface = () => {
             <div
               className={`max-w-[60%] rounded-2xl px-4 py-3 ${
                 message.sender === 'user'
-                  ? 'bg-indigo-500 text-white'
-                  : 'bg-white shadow-sm border border-gray-100 text-gray-800'
+                  ? 'bg-primary-600 text-white'
+                  : 'bg-primary-800 text-primary-500'
               }`}
             >
               <p className="text-sm leading-relaxed">{message.content}</p>
@@ -68,27 +69,32 @@ const ChatInterface = () => {
         ))}
       </div>
 
-      <div className="border-t border-gray-100 bg-white">
-        <div className="max-w-3xl mx-auto px-4 py-4">
-          <form onSubmit={handleSubmit} className="flex gap-2 items-center">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Tell me what you want to post about..."
-              className="flex-1 bg-gray-50 rounded-full px-6 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
-            />
+      <div className="border-t border-primary-800 bg-primary-900 p-4 rounded-b-lg">
+        <form onSubmit={handleSubmit} className="flex items-center gap-2">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="What should you publish today?"
+            className="flex-1 bg-transparent text-white placeholder-primary-700 outline-none"
+          />
+          <div className="flex items-center gap-2">
             <button
-              type="submit"
-              className="bg-indigo-500 text-white rounded-full p-3 hover:bg-indigo-600 transition-colors"
+              type="button"
+              className="flex items-center justify-center w-8 h-8 text-primary-500 hover:bg-primary-800 rounded-full transition-colors"
+              title="Share on X (formerly Twitter)"
             >
-              <FiSend size={18} />
+              <FaXTwitter className="h-4 w-4" />
             </button>
-          </form>
-          <div className="text-center mt-3">
-            <span className="text-xs text-gray-400">Powered by Groq</span>
+            <button
+              type="button"
+              className="flex items-center justify-center w-8 h-8 text-primary-500 hover:bg-primary-800 rounded-full transition-colors"
+              title="Share on LinkedIn"
+            >
+              <FaLinkedinIn className="h-4 w-4" />
+            </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   )

@@ -41,13 +41,33 @@ export const ChatInterface = () => {
 
   return (
     <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl bg-primary-900 rounded-lg shadow-xl">
+      <div className="max-h-[400px] overflow-y-auto p-4">
+        {messages.map((message) => (
+          <div
+            key={message.id}
+            className={`mb-4 ${
+              message.sender === 'user' ? 'text-right' : 'text-left'
+            }`}
+          >
+            <div
+              className={`inline-block p-3 rounded-lg ${
+                message.sender === 'user'
+                  ? 'bg-primary-500 text-white'
+                  : 'bg-primary-800 text-primary-200'
+              }`}
+            >
+              {message.content}
+            </div>
+          </div>
+        ))}
+      </div>
       <div className="border-t border-primary-800 bg-primary-900 p-4 rounded-b-lg">
         <form onSubmit={handleSubmit} className="flex items-center gap-2">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="What should you publish today?"
+            placeholder="What will you publish today?"
             className="flex-1 bg-transparent text-white placeholder-primary-700 outline-none"
           />
           <div className="flex items-center gap-2">

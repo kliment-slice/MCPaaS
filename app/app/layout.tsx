@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Source_Sans_3 } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const sourceSansPro = Source_Sans_3({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-source-sans",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sourceSansPro.variable} antialiased`}>
+      <body className={`${inter.variable} antialiased`}>
         {children}
       </body>
     </html>

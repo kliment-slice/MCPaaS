@@ -1,12 +1,10 @@
-import { FiHome, FiGithub, FiCalendar, FiBarChart } from 'react-icons/fi'
+import { FiHome, FiGithub } from 'react-icons/fi'
 import Link from 'next/link'
 
 const Sidebar = () => {
   const navItems = [
     { icon: FiHome, href: '/', label: 'Dashboard' },
     { icon: FiGithub, href: '/github', label: 'GitHub' },
-    { icon: FiCalendar, href: '/calendar', label: 'Calendar' },
-    { icon: FiBarChart, href: '/analytics', label: 'Analytics' },
   ]
 
   return (

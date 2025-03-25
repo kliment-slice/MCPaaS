@@ -1,4 +1,4 @@
-from openai import OpenAI
+from groq import Groq
 from dotenv import load_dotenv
 import os
 import json
@@ -8,16 +8,16 @@ from typing import Optional, Dict, Any, List
 load_dotenv()
 logger = logging.getLogger(__name__)
 
-class OpenAIAgent:
+class GroqAgent:
     def __init__(
         self,
         instructions: str,
         tools_map: Optional[Dict[str, callable]] = None,
         structured_output: Optional[str] = None,
-        model: str = "gpt-4o-mini",
+        model: str = "llama3-8b-8192",
         max_tool_retries: int = 3
     ):
-        """Initialize an OpenAI Agent with tools and conversation capabilities.
+        """Initialize an Groq (with a Q) AI Agent with tools and conversation capabilities.
         
         Args:
             instructions: System prompt/instructions for the agent
@@ -26,7 +26,7 @@ class OpenAIAgent:
             model: OpenAI model to use (must support tool calls if tools are provided)
             max_tool_retries: Maximum number of times to retry tool calls (default: 3)
         """
-        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
         self.model = model
         self.instructions = instructions
         self.tools_map = tools_map or {}

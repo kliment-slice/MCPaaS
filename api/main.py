@@ -32,6 +32,13 @@ try:
 except ImportError as e:
     raise ImportError(f"Failed to import Toolhouse: {e}")
 
+def get_groq_client():
+    """Return a configured Groq client"""
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        raise HTTPException(status_code=500, detail="GROQ_API_KEY environment variable not set")
+    return Groq(api_key=api_key)
+
 class ScrapeRequest(BaseModel):
     url: str
 
@@ -57,7 +64,7 @@ async def groq_query(request: Request):
 
 async def run_groq_query(prompt: str, model: str = "llama-3.3-70b-versatile") -> str:
     """Execute a Groq query using the specified model"""
-    client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    client = get_groq_client()
     
     try:
         completion = client.chat.completions.create(
@@ -78,7 +85,7 @@ async def run_groq_query(prompt: str, model: str = "llama-3.3-70b-versatile") ->
 async def mcphack_summarize_scrape():
     """Scrape the GitHub commits page and return a tweet summary with author tags"""
     try:
-        client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+        client = get_groq_client()
         url = "https://github.com/kliment-slice/MCPaaS/commits"
         
         # Get mcphack tools to find firecrawl_scrape
@@ -179,7 +186,7 @@ async def mcphack_composio_tweet(request: Request):
         if not tweet_prompt:
             return {"error": "Missing 'prompt' in request body"}
             
-        client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+        client = get_groq_client()
         
         # Get the composio tools
         mcphacks_tools = th.get_tools("compo")

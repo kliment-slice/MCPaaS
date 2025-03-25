@@ -10,11 +10,11 @@ const Sidebar = () => {
   ]
 
   return (
-    <aside className="w-14 h-screen bg-gray-900 flex flex-col items-center py-6 fixed left-0">
+    <aside className="w-14 h-screen bg-gradient-to-b from-primary-900 via-primary-800 to-primary-700 flex flex-col items-center py-6 fixed left-0">
       <div className="mb-12">
         <Link href="/">
-          <div className="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center transform transition-transform hover:scale-105">
-            <span className="text-white font-medium text-sm">P</span>
+          <div className="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center transform transition-transform hover:scale-105">
+            <span className="text-primary-900 font-medium text-sm">P</span>
           </div>
         </Link>
       </div>
@@ -24,7 +24,7 @@ const Sidebar = () => {
           <Link
             key={index}
             href={item.href}
-            className="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110"
+            className="text-primary-500/60 hover:text-primary-500 transition-all duration-200 transform hover:scale-110"
             title={item.label}
           >
             <item.icon size={20} />

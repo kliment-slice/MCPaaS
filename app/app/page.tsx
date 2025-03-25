@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { RefreshCw, CheckCircle, Rocket, Send } from 'lucide-react'
 import { motion } from 'framer-motion'
+import './spinStyles.css'
 
 const BackgroundQuotes = () => {
   const quotes = [
@@ -80,16 +81,8 @@ const BackgroundQuotes = () => {
   )
 }
 
-// Add this at the top level of your CSS or in your Tailwind config
-const styles = {
-  '.animate-spin-slow': {
-    animation: 'spin 60s linear infinite',
-  },
-  '@keyframes spin': {
-    from: { transform: 'rotate(0deg)' },
-    to: { transform: 'rotate(360deg)' },
-  },
-}
+// Include the styles in the global stylesheet instead of defining them here
+import './spinStyles.css'
 
 export default function Home() {
   const [commits, setCommits] = useState('')
@@ -206,7 +199,7 @@ export default function Home() {
         {/* Welcome Message and Refresh Button */}
         <div className="text-center mb-8">
           <p className="text-[clamp(0.75rem,1.5vw,1rem)] text-white/90 max-w-[90%] mx-auto">
-            Let's publish what you've been working on.
+            Let&apos;s publish what you&apos;ve been working on.
           </p>
           <button
             onClick={refreshLatestCommits}
@@ -266,11 +259,11 @@ export default function Home() {
         {/* Quote */}
         <div className="mt-4">
           <blockquote className="relative">
-            <div className="absolute top-0 left-0 text-4xl text-white/20 -translate-x-4 -translate-y-4">"</div>
+            <div className="absolute top-0 left-0 text-4xl text-white/20 -translate-x-4 -translate-y-4">&ldquo;</div>
             <p className="italic text-white/70 text-center text-sm leading-relaxed">
               By not talking about what I was working on, no one else was emotionally invested in these projects like I was.
             </p>
-            <div className="absolute bottom-0 right-0 text-4xl text-white/20 translate-x-2 translate-y-2">"</div>
+            <div className="absolute bottom-0 right-0 text-4xl text-white/20 translate-x-2 translate-y-2">&rdquo;</div>
           </blockquote>
         </div>
 

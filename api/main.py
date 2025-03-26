@@ -183,6 +183,8 @@ async def mcphack_composio_tweet(request: Request):
         
         # Get the composio tools
         mcphacks_tools = th.get_tools("compo")
+        # adding a comment to show composio
+        #mcp integration!!!
         
         # Find the composio_toolset tool
         composio_tool = None
